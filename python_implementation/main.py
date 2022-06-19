@@ -5,10 +5,11 @@ import copy
 
 
 def main():
+    N = 16
     # m x n
-    matrix1 = np.random.randint(1, 10, size=(256, 256))
+    matrix1 = np.random.randint(1, 10, size=(N, N))
     # n x l
-    matrix2 = np.random.randint(1, 10, size=(256, 256))
+    matrix2 = np.random.randint(1, 10, size=(N, N))
     # m x l
     M = len(matrix1)
     N = len(matrix2)

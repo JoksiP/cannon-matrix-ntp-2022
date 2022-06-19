@@ -22,7 +22,7 @@ def thread_mult(matrix1, matrix2, N, p_step_i, p_step_j, p_sqrt):
         for i in range(N):
             # shift up
             matrix2[:, i] = np.roll(matrix2[:, i], -1)
-    write_utils.write_conc_to_csv(p_step_i * N + p_step_j, matrix1, matrix2, result_matrix)
+    write_utils.write_conc_to_csv(int(N/p_sqrt), matrix1, matrix2, result_matrix)
     return result_matrix
 
 
@@ -41,9 +41,9 @@ def begin(matrix1, matrix2, P, N):
     # Init multiprocessing.Pool()
     pool = mp.Pool(mp.cpu_count())
     results = []
-    for i in range(n_p_sqrt):
-        for j in range(n_p_sqrt):
-            results.append(pool.apply_async(thread_mult, args=(matrix1, matrix2, N, i*p_sqrt, j*p_sqrt, p_sqrt)))
+    for i in range(p_sqrt):
+        for j in range(p_sqrt):
+            results.append(pool.apply_async(thread_mult, args=(matrix1, matrix2, N, i*n_p_sqrt, j*n_p_sqrt, n_p_sqrt)))
     for i in range(P):
         result = np.add(result, results[i].get())
     pool.terminate()
