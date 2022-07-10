@@ -5,12 +5,14 @@ import copy
 
 
 def main():
-    N = 16
+    N = 256
+    P= 16
     # m x n
     matrix1 = np.random.randint(1, 10, size=(N, N))
     # n x l
     matrix2 = np.random.randint(1, 10, size=(N, N))
     # m x l
+    """
     M = len(matrix1)
     N = len(matrix2)
     L = len(matrix2[0])
@@ -23,6 +25,11 @@ def main():
     result_matrix = np.zeros((M, L))
     elapsed = concurrent_impl.begin(matrix1, matrix2, P, N)
     print(elapsed)
+    """
+    elapsed_seq = sequential_impl.begin(copy.deepcopy(matrix1), copy.deepcopy(matrix2), N, N)
+    #print(np.matmul(matrix1, matrix2))
+    elapsed_conc = concurrent_impl.begin(copy.deepcopy(matrix1), copy.deepcopy(matrix2), N, P)
+    print("Sequential implementation elapsed time: {} \nConcurrent implementation elapsed time: {}".format(elapsed_seq, elapsed_conc))
 
 
 if __name__ == '__main__':
