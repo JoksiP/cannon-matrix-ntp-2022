@@ -2,32 +2,26 @@ import numpy as np
 import sequential_impl
 import concurrent_impl
 import copy
+import sys
+from math import sqrt
 
 
 def main():
-    N = 256
-    P= 16
-    # m x n
+    N = int(sys.argv[1])
+    P = int(sys.argv[2])
+
     matrix1 = np.random.randint(1, 10, size=(N, N))
-    # n x l
     matrix2 = np.random.randint(1, 10, size=(N, N))
-    # m x l
-    """
-    M = len(matrix1)
-    N = len(matrix2)
-    L = len(matrix2[0])
-    result_matrix = np.zeros((M, L))
-    # number of processes
-    P = 16
-    #print(np.matmul(matrix1, matrix2))
-    elapsed = sequential_impl.begin(copy.deepcopy(matrix1), copy.deepcopy(matrix2), result_matrix, N, M, L)
-    print(elapsed)
-    result_matrix = np.zeros((M, L))
-    elapsed = concurrent_impl.begin(matrix1, matrix2, P, N)
-    print(elapsed)
-    """
+    print(N)
+    print(P)
+    if int(sqrt(P)+0.5) ** 2 != P:
+        print("P must be perfect square.")
+        sys.exit()
+    if int(N/sqrt(P))*int(sqrt(P)) != N:
+        print("N must be dividable by the square root of P.")
+        sys.exit()
+
     elapsed_seq = sequential_impl.begin(copy.deepcopy(matrix1), copy.deepcopy(matrix2), N, N)
-    #print(np.matmul(matrix1, matrix2))
     elapsed_conc = concurrent_impl.begin(copy.deepcopy(matrix1), copy.deepcopy(matrix2), N, P)
     print("Sequential implementation elapsed time: {} \nConcurrent implementation elapsed time: {}".format(elapsed_seq, elapsed_conc))
 
