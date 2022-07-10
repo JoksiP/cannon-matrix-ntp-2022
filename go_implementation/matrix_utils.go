@@ -80,17 +80,10 @@ func addMatrix(matrix1, matrix2 [][]float64) [][]float64 {
 	return matrix1
 }
 
-func matMul(matrix1, matrix2 [][]float64) {
-	multiplicationnmat := createZeroMatrix(len(matrix1))
-	for i, row := range multiplicationnmat {
-		for j := range row {
-			for k := range row {
-
-				multiplicationnmat[i][j] += matrix1[i][k] * matrix2[k][j]
-
-			}
-			fmt.Print(multiplicationnmat[i][j], "\t")
+func matMul(result, matrix1, matrix2 [][]float64, n int) {
+	for i := 0; i < n; i++ {
+		for j := 0; j < n; j++ {
+			result[i][j] += matrix1[i][j] * matrix2[i][j]
 		}
-		fmt.Println()
 	}
 }

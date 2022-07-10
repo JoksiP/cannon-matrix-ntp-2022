@@ -6,7 +6,7 @@ import (
 
 func main() {
 	N := 256
-	P := 16
+	P := 256
 	matrix1 := createMatrix(N, 0.0, 10.0)
 	matrix2 := createMatrix(N, 0.0, 10.0)
 	//printMatrix(matrix1)
@@ -16,6 +16,10 @@ func main() {
 	fmt.Println()
 	fmt.Println()
 	fmt.Printf("%s", seqImpl(matrix1, matrix2, N))
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
 	fmt.Printf("%s", concImpl(matrix1, matrix2, P))
 	//concImpl(matrix1, matrix2, 16)
 }
