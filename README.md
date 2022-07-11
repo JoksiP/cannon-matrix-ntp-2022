@@ -31,3 +31,9 @@ Biblioteka multiprocessing za paralelizaciju je upotrebljena u jeziku Python.
 ### Vizualizacija rešenja
 
 Rešenje će biti vizualizovano tako što će se prikazati svaka iteracija sekvencijalnog rešenja, i svaki proces i njegov rezultat paralelnog rešenja.
+
+### Uputstvo za upotrebu
+
+Python program se pokreće komandom: python main.py [N] [P]
+
+Golang program se pokreće komandom: go_implementation [N] [P]
